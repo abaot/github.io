@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,command,shell,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="首先，是关机/重启命令，仅在虚拟机时使用，实际工作中用不到reboot            一般不跟参数使用，输入指令即可重启 shutdown        一般需要跟参数，例： shutdown -r     延时多少分钟重启，一般使用now shutdown -r now   立即重启  shutdown -f        强制重启 跟windows一样，linux也存在注销功能exit">
+<meta name="keywords" content="linux,command,shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux最常用命令">
+<meta property="og:url" content="http://yoursite.com/2019/02/linux.html">
+<meta property="og:site_name" content="关于网络">
+<meta property="og:description" content="首先，是关机/重启命令，仅在虚拟机时使用，实际工作中用不到reboot            一般不跟参数使用，输入指令即可重启 shutdown        一般需要跟参数，例： shutdown -r     延时多少分钟重启，一般使用now shutdown -r now   立即重启  shutdown -f        强制重启 跟windows一样，linux也存在注销功能exit">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-20T12:37:46.665Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux最常用命令">
+<meta name="twitter:description" content="首先，是关机/重启命令，仅在虚拟机时使用，实际工作中用不到reboot            一般不跟参数使用，输入指令即可重启 shutdown        一般需要跟参数，例： shutdown -r     延时多少分钟重启，一般使用now shutdown -r now   立即重启  shutdown -f        强制重启 跟windows一样，linux也存在注销功能exit">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/linux.html">
+
+
+
+
+
+  <title>Linux最常用命令 | 关于网络</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">关于网络</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-书吧">
+          <a href="/book/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            书吧
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-软云">
+          <a href="/cloud/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cloud-download"></i> <br>
+            
+            软云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-感谢">
+          <a href="/thanks/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heart"></i> <br>
+            
+            感谢
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-留言">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/linux.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="至尊宝">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="关于网络">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux最常用命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-19T21:27:05+08:00">
+                2019-02-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/linux.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/linux.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="首先，是关机-重启命令，仅在虚拟机时使用，实际工作中用不到"><a href="#首先，是关机-重启命令，仅在虚拟机时使用，实际工作中用不到" class="headerlink" title="首先，是关机/重启命令，仅在虚拟机时使用，实际工作中用不到"></a>首先，是关机/重启命令，仅在虚拟机时使用，实际工作中用不到</h2><pre><code>reboot            一般不跟参数使用，输入指令即可重启
+shutdown        一般需要跟参数，例：
+shutdown -r     延时多少分钟重启，一般使用now
+shutdown -r now   立即重启 
+shutdown -f        强制重启
+</code></pre><h2 id="跟windows一样，linux也存在注销功能"><a href="#跟windows一样，linux也存在注销功能" class="headerlink" title="跟windows一样，linux也存在注销功能"></a>跟windows一样，linux也存在注销功能</h2><pre><code>exit
+  1)halt
+  halt    可不接参数
+  halt -f 强制关机
+  2）poweroff
+  poweroff    可不接参数使用
+  poweroff -f     强制关机
+  3）init 0
+
+  4）shutdown    不可单独使用
+  shutdown -h 分钟数    延时多久关机
+  shutdown -h now       立即关机
+</code></pre><h2 id="最最常用的是cd-命令"><a href="#最最常用的是cd-命令" class="headerlink" title="最最常用的是cd 命令"></a>最最常用的是cd 命令</h2><pre><code>cd 进入用户主目录； 
+cd ~ 进入用户主目录；
+cd - 返回进入此目录之前所在的目录； 
+cd .. 返回上级目录（若当前目录为“/“，则执行完后还在“/&quot;；&quot;..&quot;为上级目录的意思）； 
+cd ../.. 返回上两级目录；
+</code></pre><h2 id="新建文件夹和文件：mkdir-touch"><a href="#新建文件夹和文件：mkdir-touch" class="headerlink" title="新建文件夹和文件：mkdir touch"></a>新建文件夹和文件：mkdir touch</h2><pre><code>mkdir    创建文件夹
+mkdir dirname      直接跟文件夹名，可在当前目录下创建文件夹
+mkdir /opt/lamp/dirname    可跟路径
+mkdir -p /opt/lam/dirname    假如lam不存在，需要用-p才可以创建该文件夹
+
+touch    新建文件
+touch dilename        可直接跟文件名在当前目录下创建新的文件
+</code></pre><h2 id="cat-less-more-tail等文件查看命令"><a href="#cat-less-more-tail等文件查看命令" class="headerlink" title="cat/less/more/tail等文件查看命令"></a>cat/less/more/tail等文件查看命令</h2><pre><code>        -n或-number：有1开始对所有输出的行数编号； 
+        -b或--number-nonblank：和-n相似，只不过对于空白行不编号； 
+        -s或--squeeze-blank：当遇到有连续两行以上的空白行，就代换为一行的空白行； 
+        -A：显示不可打印字符，行尾显示“$”； 
+        -e：等价于&quot;-vE&quot;选项； 
+        -t：等价于&quot;-vT&quot;选项；
+
+    -e：文件内容显示完毕后，自动退出； 
+    -f：强制显示文件； 
+    -g：不加亮显示搜索到的所有关键词，仅显示当前显示的关键字，以提高显示速度； 
+    -l：搜索时忽略大小写的差异； 
+    -N：每一行行首显示行号； 
+    -s：将连续多个空行压缩成一行显示； 
+    -S：在单行显示较长的内容，而不换行显示； 
+    -x&lt;数字&gt;：将TAB字符显示为指定个数的空格字符。
+
+
+    -&lt;数字&gt;：指定每屏显示的行数； 
+    -d：显示“[press space to continue,&apos;q&apos; to quit.]”和“[Press &apos;h&apos; for instructions]”； 
+    -c：不进行滚屏操作。每次刷新这个屏幕；
+    -s：将多个空行压缩成一行显示； 
+    -u：禁止下划线； +&lt;数字&gt;：从指定数字的行开始显示。
+
+按Space键：显示文本的下一屏内容。 
+按Enier键：只显示文本的下一行内容。 
+按斜线符|：接着输入一个模式，可以在文本中寻找下一个相匹配的模式。 
+按H键：显示帮助屏，该屏上有相关的帮助信息。 
+按B键：显示上一屏内容。 
+按Q键：退出rnore命令。
+
+--retry：即是在tail命令启动时，文件不可访问或者文件稍后变得不可访问，都始终尝试打开文件。使用此选项时需要与选项“——follow=name”连用； 
+-c或——bytes=：输出文件尾部的N（N为整数）个字节内容； 
+-f或；--follow：显示文件最新追加的内容。“name”表示以文件名的方式监视文件的变化。“-f”与“-fdescriptor”等效； 
+-F：与选项“-follow=name”和“--retry&quot;连用时功能相同； 
+-n或——line=：输出文件的尾部N（N位数字）行内容。 
+--pid=&lt;进程号&gt;：与“-f”选项连用，当指定的进程号的进程终止后，自动退出tail命令； 
+-q或——quiet或——silent：当有多个文件参数时，不输出各个文件名； 
+-s&lt;秒数&gt;或——sleep-interal=&lt;秒数&gt;：与“-f”选项连用，指定监视文件变化时间隔的秒数； 
+-v或——verbose：当有多个文件参数时，总是输出各个文件名；
+
+一般tail命令最常用的-n和-f，例：
+tail filename        读取filename最后10行内容
+tail -f filename     实时动态读取filename最后10行内容
+tail -20f filename   实时动态读取filename最后20行内容
+复制代码
+cat和less及more指令相似，cat是一次性读取所有内容，文件内容较多时速度较慢。less与more的区别在于：less可以前后翻页查看，more只能向前翻页查看。
+
+tail则用于实时获取log信息，从后向前读取内容
+
+上述四种命令均可跟grep搭配使用cat/less/tail |grep mysql
+</code></pre><h2 id="查看文件大小的命令-du-df"><a href="#查看文件大小的命令-du-df" class="headerlink" title="查看文件大小的命令 du/df"></a>查看文件大小的命令 du/df</h2><pre><code>du -sh *      显示当前目录下所有文件的大小
+du -sh filename 　　显示该文件大小
+du -sh 　　　　显示当前目录所占空间大小   
+-s或 仅显示总计，只列出最后加总的值。 
+-h或 以K，M，G为单位，提高信息的可读性。
+df  显示磁盘占用信息
+直接df默认一k为单位
+df -lh 显示本地系统的占用信息，以K，M，G为单位
+</code></pre><h2 id="大重点–文本编辑器-vi"><a href="#大重点–文本编辑器-vi" class="headerlink" title="大重点–文本编辑器 vi"></a>大重点–文本编辑器 vi</h2><p>vi命令是UNIX操作系统和类UNIX操作系统中最通用的全屏幕纯文本编辑器。<br>Linux中的vi编辑器叫vim，它是vi的增强版（vi Improved），与vi编辑器完全兼容，而且实现了很多增强功能。<br>vi编辑器支持编辑模式和命令模式，编辑模式下可以完成文本的编辑功能，命令模式下可以完成对文件的操作命令，要正确使用vi编辑器就必须熟练掌握着两种模式的切换。<br>默认情况下，打开vi编辑器后自动进入命令模式。从编辑模式切换到命令模式使用“esc”键，从命令模式切换到编辑模式使用“A”、“a”、“O”、“o”、“I”、“i”键。<br>vi编辑器提供了丰富的内置命令，有些内置命令使用键盘组合键即可完成，有些内置命令则需要以冒号“：”开头输入。常用内置命令如下：</p>
+<pre><code>1 Ctrl+u：向文件首翻半屏； 
+ 2 Ctrl+d：向文件尾翻半屏； 
+ 3 Ctrl+f：向文件尾翻一屏； 
+ 4 Ctrl+b：向文件首翻一屏； 
+ 5 Esc：从编辑模式切换到命令模式； 
+ 6 ZZ：命令模式下保存当前文件所做的修改后退出vi； 
+ 7 :行号：光标跳转到指定行的行首； 
+ 8 :$：光标跳转到最后一行的行首； 
+ 9 x或X：删除一个字符，x删除光标后的，而X删除光标前的； 
+10 D：删除从当前光标到光标所在行尾的全部字符； 
+11 dd：删除光标行正行内容； 
+12 ndd：删除当前行及其后n-1行； 
+13 nyy：将当前行及其下n行的内容保存到寄存器?中，其中？为一个字母，n为一个数字； 
+14 p：粘贴文本操作，用于将缓存区的内容粘贴到当前光标所在位置的下方； 
+15 P：粘贴文本操作，用于将缓存区的内容粘贴到当前光标所在位置的上方； 
+16 /字符串：文本查找操作，用于从当前光标所在位置开始向文件尾部查找指定字符串的内容，查找的字符串会被加亮显示； 
+17 ？name：文本查找操作，用于从当前光标所在位置开始向文件头部查找指定字符串的内容，查找的字符串会被加亮显示； 
+18 a，bs/F/T：替换文本操作，用于在第a行到第b行之间，将F字符串换成T字符串。其中，“s/”表示进行替换操作； 
+19 a：在当前字符后添加文本； 
+20 A：在行末添加文本； 
+21 i：在当前字符前插入文本； 
+22 I：在行首插入文本； 
+23 o：在当前行后面插入一空行； 
+24 O：在当前行前面插入一空行； 
+25 :wq：在命令模式下，执行存盘退出操作； 
+26 :w：在命令模式下，执行存盘操作； 
+27 :w！：在命令模式下，执行强制存盘操作； 
+28 :q：在命令模式下，执行退出vi操作； 
+29 :q！：在命令模式下，执行强制退出vi操作； 
+30 :e文件名：在命令模式下，打开并编辑指定名称的文件； 
+31 :n：在命令模式下，如果同时打开多个文件，则继续编辑下一个文件； 
+32 :f：在命令模式下，用于显示当前的文件名、光标所在行的行号以及显示比例； 
+33 :set nu：在命令模式下，用于在最左端显示行号； 
+34 :set nonu：在命令模式下，用于在最左端不显示行号；
+35 :1,3y 复制第一行到第三行
+36 :1,3d 删除第一行到第三行
+37 :1,3s/str/str_new/g 替换第一行到第三行中的字符串
+38 :1,3s/str/str_new    替换第一行到第三行中的字符串第一个字符
+39 :1,3 g/str /d 删除第一行到第三行中含有这个字符串的行
+</code></pre><h2 id="移动文件及文件夹-mv-cp"><a href="#移动文件及文件夹-mv-cp" class="headerlink" title="移动文件及文件夹 mv/cp"></a>移动文件及文件夹 mv/cp</h2><pre><code>mv                类似于windows下的剪切
+mv aaa /etc/udev   讲aaa移动至/etc/udev目录下
+mv /opt/lampp /etc/udev    将/opt目录下的lampp移动至/etc/udev目录下
+mv -r aaa /etc/udev     将aaa文件夹递归移动至/etc/udev目录下，不加-r会出错
+mv aaa bbb        将aaa改名为bbb
+
+-b：当文件存在时，覆盖前，为其创建一个备份； 
+-f：若目标文件或目录与现有的文件或目录重复，则直接覆盖现有的文件或目录； 
+-i：交互式操作，覆盖前先行询问用户，如果源文件与目标文件或目标目录中的文件同名，则询问用户是否覆盖目标文件。 
+-u：当源文件比目标文件新或者目标文件不存在时，才执行移动操作。
+
+
+-f：强行复制文件或目录，不论目标文件或目录是否已存在；
+-i：覆盖既有文件之前先询问用户；
+-s：对源文件建立符号连接，而非复制文件；
+-R/r：递归处理，将指定目录下的所有文件与子目录一并处理
+用法与mv基本相似
+cp 路径1 路径2
+</code></pre><h2 id="重定向-gt"><a href="#重定向-gt" class="headerlink" title="重定向 &gt;"></a>重定向 &gt;</h2><pre><code>cat aaa.txt &gt; bbb.txt        将aaa的内容写入bbb中，覆盖写入
+cat aaa.txt &gt;&gt; bbb.txt        讲aaa的内容追加写入bbb中，不覆盖原来内容
+&gt; bbb.txt         将bbb清空
+</code></pre><h2 id="权限管理-chmod"><a href="#权限管理-chmod" class="headerlink" title="权限管理 chmod"></a>权限管理 chmod</h2><pre><code>chmod -R     给文件夹下所有的文件赋权限，递归处理
+chmod u+x,g+w f01　　//为文件f01设置自己可以执行，组员可以写入的权限 
+chmod u=rwx,g=rw,o=r f01     给所属用户添加读写执行权限，给组添加读写权限，给其他用户添加读权限
+chmod 764 f01          以数字的方式赋予所属用户/用户组/其他用户权限r=4，w=2，x=1               
+chmod a+x f01　　//对文件f01的u,g,o都设置可执行属性，a代表all
+</code></pre><h2 id="删除命令-rm"><a href="#删除命令-rm" class="headerlink" title="删除命令 rm"></a>删除命令 rm</h2><pre><code>一般都用rm -rf  aaa
+-r    递归删除
+-f    强制删除，不询问
+rm使用时需要谨慎，公司服务器删错就完犊子了
+</code></pre><h2 id="查看服务"><a href="#查看服务" class="headerlink" title="查看服务"></a>查看服务</h2><pre><code>netstat -nlpt|grep 80 查看该端口号是否被占用
+ps可以查看具体的进程信息，一般与管道符连接其他命令使用，如：grep
+ps常用参数-ef/-aux，一般最常用还是-ef，例：ps -ef|grep mysql 查询mysql进程
+top也可查看进程信息，而且是动态显示
+
+whoami 查看当前登陆用户
+
+who 查看多少用户在使用系统
+
+date查看系统时间，可跟时间格式使用
+
+cal查看日历，可跟年份，查看指定的年份
+
+chkconfig --list     #查看系统服务启动
+chkconfig iptables on  #开机启动该服务
+chkconfig iptables off  #开机不启动该服务
+service iptables start #启动该服务
+service iptables restart #重启启该服务
+ps -ef|grep mysql|grep -v grep|awk &apos;{print $2}&apos;
+ps -ef|grep mysql 是查询mysql服务的进程
+|后的grep -v grep 是匹配不包含grep的行
+awk是取查询结果的第几列，awk &apos;{print $2}&apos;则是取第二列的值
+grep     无参数则显示匹配的行
+-c         显示匹配的行数
+-v         显示不匹配的行
+</code></pre><h2 id="杀掉进程-kill-命令"><a href="#杀掉进程-kill-命令" class="headerlink" title="杀掉进程 kill 命令"></a>杀掉进程 kill 命令</h2><pre><code>kill最常用的参数是-9，用法：kill -9 进程号 即可强制杀掉该进程
+统计命令 wc
+
+常用的参数是 -l 用法：wc -l ，例：
+
+
+ps -ef|grep mysql|wc -l        统计查询出的mysql进程的行数
+</code></pre><h2 id="查找命令-find-locate-whereis-which"><a href="#查找命令-find-locate-whereis-which" class="headerlink" title="查找命令 find/locate/whereis/which"></a>查找命令 find/locate/whereis/which</h2><pre><code>find -name        后跟文件名，可查看文件所在目录，可跟user，查看属于user的文件
+find -name filename        查找filename所在目录
+find -name name*           查找开头为name的文件所在目录
+find -name *name           查找结尾为name的文件所在目录
+find -name *name*          查找包含name字符串的文件所在目录
+find -user faith           查看用户faith的文件
+
+locate用法与find基本相似，只是locate搜索速度较快些，locate一般系统不会自带，需要安装，可用yum安装
+
+whereis只能搜索程序名
+which则是只查询path中的环境变量
+</code></pre>
+      
+    </div>
+    
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+<img src="/images/jl.png">
+  
+</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果本文对您有帮助，那就支持我一下吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/x1.png" alt="至尊宝 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/x2.png" alt="至尊宝 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/x3.png" alt="至尊宝 比特币">
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/command/" rel="tag"># command</a>
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/linux22port.html" rel="prev" title="Linux修改默认SSH端口22<避免被破解>">
+                Linux修改默认SSH端口22<避免被破解> <i class="fa fa-chevron-right"></i>
+              </避免被破解></a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="至尊宝">
+            
+              <p class="site-author-name" itemprop="name">至尊宝</p>
+              <p class="site-description motion-element" itemprop="description">若我取经非渡世, 定斩如来屠天庭.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/yourname" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/yourname" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://youtube.com/yourname" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先，是关机-重启命令，仅在虚拟机时使用，实际工作中用不到"><span class="nav-number">1.</span> <span class="nav-text">首先，是关机/重启命令，仅在虚拟机时使用，实际工作中用不到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跟windows一样，linux也存在注销功能"><span class="nav-number">2.</span> <span class="nav-text">跟windows一样，linux也存在注销功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最最常用的是cd-命令"><span class="nav-number">3.</span> <span class="nav-text">最最常用的是cd 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建文件夹和文件：mkdir-touch"><span class="nav-number">4.</span> <span class="nav-text">新建文件夹和文件：mkdir touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat-less-more-tail等文件查看命令"><span class="nav-number">5.</span> <span class="nav-text">cat/less/more/tail等文件查看命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看文件大小的命令-du-df"><span class="nav-number">6.</span> <span class="nav-text">查看文件大小的命令 du/df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大重点–文本编辑器-vi"><span class="nav-number">7.</span> <span class="nav-text">大重点–文本编辑器 vi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动文件及文件夹-mv-cp"><span class="nav-number">8.</span> <span class="nav-text">移动文件及文件夹 mv/cp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重定向-gt"><span class="nav-number">9.</span> <span class="nav-text">重定向 &gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限管理-chmod"><span class="nav-number">10.</span> <span class="nav-text">权限管理 chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除命令-rm"><span class="nav-number">11.</span> <span class="nav-text">删除命令 rm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看服务"><span class="nav-number">12.</span> <span class="nav-text">查看服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杀掉进程-kill-命令"><span class="nav-number">13.</span> <span class="nav-text">杀掉进程 kill 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找命令-find-locate-whereis-which"><span class="nav-number">14.</span> <span class="nav-text">查找命令 find/locate/whereis/which</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart" aria-hidden="true"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">至尊宝</span>
+
+  
+</div>
+
+
+  <div class="powered-by"><a class="theme-link" target="_blank" href="https://abaot.com">关于网络</a></div>
+
+
+
+  
+
+
+
+ 
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'TrDnQ0y1d8brmQowB6xbeDSl-gzGzoHsz',
+        appKey: 'SxrK8uYqUypp46KVUftt5KU6',
+        placeholder: '请输入...',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+</body>
+</html>
